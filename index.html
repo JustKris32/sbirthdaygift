@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Happy Birthday Sandraa</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* Reset and base styles */
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Floating particles background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 300px 300px, 200px 200px, 100px 100px;
+    animation: float 20s infinite linear;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-100px) rotate(360deg); }
+  }
+
+  #app {
+    width: 90%;
+    max-width: 750px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.1);
+    padding: 30px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  #app:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1);
+  }
+
+  /* Gradient overlay for depth */
+  #app::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  img.gif-top {
+    width: 200px;
+    height: 155px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    animation: fadeInDown 1s ease forwards, pulse 2s infinite;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    border: 3px solid #fff;
+    position: relative;
+    z-index: 2;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+
+  h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInUp 1s ease forwards, gradientShift 3s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  h1 br {
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  small {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #666;
+    margin-bottom: 25px;
+    animation: fadeInUp 1s ease 0.5s forwards;
+    opacity: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  button {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeInUp 1s ease 1s forwards;
+    opacity: 0;
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+  }
+
+  button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+  }
+
+  button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(255, 107, 107, 0.6);
+  }
+
+  button:hover::before {
+    left: 100%;
+  }
+
+  /* Page containers */
+  .page {
+    display: none;
+    animation: fadeIn 0.8s ease forwards;
+    position: relative;
+    z-index: 2;
+  }
+  .page.active {
+    display: block;
+  }
+
+  /* Envelope image */
+  .envelope-img {
+    width: 200px;
+    height: 155px;
+    margin: 0 auto 20px auto;
+    animation: fadeInDown 1s ease forwards, bounce 2s infinite;
+    filter: drop-shadow(0 8px 15px rgba(0,0,0,0.2));
+    border-radius: 15px;
+    border: 2px solid #fff;
+    object-fit: cover;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+  }
+
+  /* Text below envelope */
+  .envelope-text {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+    color: #333;
+    animation: fadeInUp 1s ease 0.5s forwards;
+    opacity: 0;
+    line-height: 1.4;
+  }
+
+  /* Buttons container */
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    animation: fadeInUp 1s ease 1s forwards;
+    opacity: 0;
+  }
+  .btn-group button {
+    flex: 1;
+    max-width: 180px;
+    min-width: 160px;
+    padding: 18px 25px;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    white-space: pre-line;
+  }
+
+  /* Letter page styling - made wider */
+  #page3 {
+    background: linear-gradient(135deg, #fff8dc, #faf0e6);
+    border-radius: 20px;
+    padding: 20px 25px 25px 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    font-family: 'Playfair Display', serif;
+    line-height: 1.6;
+    color: #333;
+    position: relative;
+    max-width: 850px !important;
+    width: 95% !important;
+    margin: 0 auto;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .letter-header-img {
+    width: 220px;
+    height: 160px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    border: 2px solid #fff;
+    animation: fadeIn 1s ease;
+    object-fit: cover;
+  }
+
+  .letter-content {
+    background: repeating-linear-gradient(
+      white 0 24px, 
+      #f8f8f8 24px 25px
+    );
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    padding: 35px 30px;
+    min-height: 350px;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+    text-align: left;
+    position: relative;
+  }
+
+  .letter-content::before {
+    content: '';
+    position: absolute;
+    left: 50px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #ff9999;
+    opacity: 0.3;
+  }
+
+  .letter-title {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin-top: 0;
+    text-align: center;
+    color: #d6336c;
+    margin-bottom: 25px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .letter-paragraph {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    line-height: 1.7;
+    text-indent: 25px;
+    min-height: 20px;
+  }
+
+  .letter-signature {
+    font-size: 1.1rem;
+    margin-top: 30px;
+    text-align: right;
+    font-style: italic;
+    min-height: 20px;
+  }
+
+  /* Retry text */
+  .retry-text {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 25px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  /* Enhanced animations */
+  @keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.95);}
+    to {opacity: 1; transform: scale(1);}
+  }
+  @keyframes fadeInUp {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+  @keyframes fadeInDown {
+    from {opacity: 0; transform: translateY(-30px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  /* Typewriter animation */
+  .typewriter {
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border-right: 2px solid transparent;
+  }
+
+  .typewriter.typing {
+    border-right: 2px solid #d6336c;
+    animation: blink-caret 0.8s step-end infinite;
+  }
+
+  .typewriter.finished {
+    border-right: transparent;
+    animation: none;
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #d6336c; }
+  }
+
+  
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    body {
+      padding: 8px;
+    }
+    #app {
+      max-width: 98%;
+      padding: 18px;
+      margin: 8px auto;
+    }
+    #page3 {
+      padding: 12px;
+      max-width: 100% !important;
+      width: 100% !important;
+      max-height: 85vh;
+    }
+    .letter-header-img {
+      width: 160px;
+      height: 115px;
+      margin-bottom: 15px;
+    }
+    .letter-content {
+      padding: 20px 15px;
+      min-height: 280px;
+    }
+    .letter-content::before {
+      left: 35px;
+    }
+    h1 {
+      font-size: 2.1rem;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+    button {
+      font-size: 1.1rem;
+      padding: 14px 28px;
+      min-height: 48px;
+      touch-action: manipulation;
+    }
+    .btn-group {
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+    .btn-group button {
+      max-width: 280px;
+      width: 85%;
+    }
+    .envelope-img {
+      width: 140px;
+      height: 105px;
+    }
+    img.gif-top {
+      width: 140px;
+      height: 105px;
+    }
+    .envelope-text {
+      font-size: 1.3rem;
+      margin-bottom: 22px;
+    }
+    .letter-title {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      min-height: 50px;
+    }
+    .letter-paragraph {
+      font-size: 1rem;
+      margin-bottom: 18px;
+      text-indent: 20px;
+      line-height: 1.6;
+    }
+    .letter-signature {
+      font-size: 1rem;
+      margin-top: 25px;
+    }
+    small {
+      font-size: 1rem;
+      margin-bottom: 18px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 5px;
+    }
+    #app {
+      padding: 15px;
+      border-radius: 15px;
+      margin: 5px auto;
+    }
+    #page3 {
+      padding: 10px;
+    }
+    .letter-content {
+      padding: 20px 15px;
+      border-radius: 10px;
+    }
+    .letter-content::before {
+      left: 40px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      line-height: 1.1;
+    }
+    button {
+      font-size: 1rem;
+      padding: 12px 25px;
+      min-height: 48px;
+    }
+    .btn-group button {
+      width: 90%;
+      max-width: none;
+    }
+    .envelope-img {
+      width: 120px;
+      height: 95px;
+    }
+    img.gif-top {
+      width: 120px;
+      height: 95px;
+    }
+    .letter-header-img {
+      width: 140px;
+      height: 100px;
+      margin-bottom: 10px;
+    }
+    .envelope-text {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .letter-title {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+    .letter-paragraph {
+      font-size: 1rem;
+      text-indent: 20px;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+    .letter-signature {
+      font-size: 1rem;
+      margin-top: 30px;
+    }
+    small {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    #app {
+      padding: 12px;
+    }
+    h1 {
+      font-size: 1.6rem;
+    }
+    .letter-title {
+      font-size: 1.4rem;
+    }
+    .letter-paragraph {
+      font-size: 0.95rem;
+    }
+    button {
+      font-size: 0.9rem;
+      padding: 10px 20px;
+    }
+    .envelope-text {
+      font-size: 1.1rem;
+    }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- Page 1 -->
+  <div id="page1" class="page active" aria-label="Welcome page">
+    <img src="https://media.tenor.com/dTkq2FK0nMcAAAAj/heart-love.gif" alt="hi" class="gif-top" />
+    <h1>Happy Birthday<br />Sandraaa! q(≧▽≦q)</h1>
+    <small>Click the next button!!! (*^_^*)</small>
+    <button id="nextBtn1" aria-label="Next">Next</button>
+  </div>
+
+  <!-- Page 2 -->
+  <div id="page2" class="page" aria-label="Envelope question page">
+    <img src="https://i.imgur.com/74dHAvO.png" alt="hi" class="envelope-img"/>
+    <div class="envelope-text">Do you want to open it?<br>`(*>﹏<*)′</div>
+    <div class="btn-group">
+      <button id="openBtn" aria-label="Open the letter">Open it <br>(/≧▽≦)/</button>
+      <button id="noBtn" aria-label="Do not open the letter">no ty<br> ╯︿╰</button>
+    </div>
+  </div>
+
+  <!-- Page 3 - Enhanced Letter Page -->
+  <div id="page3" class="page" aria-label="Letter content page">
+    <img src="https://i.imgur.com/ePj75hH.jpeg alt="hi" class="letter-header-img" />
+    <div class="letter-content">
+      <h1 class="letter-title" id="letter-title">HAPPY BIRTHDAY SANDRAAAA!! (´▽`ʃ♡ƪ)</h1>
+      <p class="letter-paragraph typewriter" id="paragraph1" style="display: none;"></p>
+      <p class="letter-paragraph typewriter" id="paragraph2" style="display: none;"></p>
+      <p class="letter-paragraph typewriter" id="paragraph3" style="display: none;"></p>
+      <p class="letter-signature typewriter" id="signature" style="display: none;"></p>
+    </div>
+  </div>
+
+  <!-- Page 4 -->
+  <div id="page4" class="page" aria-label="Retry page">
+    <img src="https://i.imgur.com/wVyTAn8.gif" alt="sad gif" class="gif-top" />
+    <div class="retry-text">Aw, let's retry again! <br>(┬┬﹏┬┬)</div>
+    <button id="resetBtn" aria-label="Reset to start">Restart:(</button>
+  </div>
+</div>
+
+<audio id="bg-music" src="audio/Taylor Swift-Back To December.mp3" type="audio/mpeg" preload="auto" loop muted></audio>
+
+<script>
+  const pages = {
+    page1: document.getElementById('page1'),
+    page2: document.getElementById('page2'),
+    page3: document.getElementById('page3'),
+    page4: document.getElementById('page4'),
+  };
+  const bgMusic = document.getElementById('bg-music');
+  const nextBtn1 = document.getElementById('nextBtn1');
+  const openBtn = document.getElementById('openBtn');
+  const noBtn = document.getElementById('noBtn');
+  const resetBtn = document.getElementById('resetBtn');
+
+  function showPage(pageId) {
+    Object.values(pages).forEach(p => p.classList.remove('active'));
+    pages[pageId].classList.add('active');
+  }
+
+  nextBtn1.addEventListener('click', () => {
+    showPage('page2');
+  });
+
+  openBtn.addEventListener('click', () => {
+    showPage('page3');
+    startTypewriterEffect();
+  });
+
+  noBtn.addEventListener('click', () => {
+    showPage('page4');
+  });
+
+  resetBtn.addEventListener('click', () => {
+    showPage('page1');
+  });
+
+  // Typewriter effect function
+  function typeWriter(element, text, speed = 40) {
+    return new Promise((resolve) => {
+      element.innerHTML = '';
+      element.style.display = 'block';
+      element.classList.add('typing');
+      let i = 0;
+      
+      function type() {
+        if (i < text.length) {
+          if (text.charAt(i) === '<') {
+            // Handle HTML tags
+            let tagEnd = text.indexOf('>', i);
+            if (tagEnd !== -1) {
+              element.innerHTML += text.substring(i, tagEnd + 1);
+              i = tagEnd + 1;
+            } else {
+              element.innerHTML += text.charAt(i);
+              i++;
+            }
+          } else {
+            element.innerHTML += text.charAt(i);
+            i++;
+          }
+          setTimeout(type, speed);
+        } else {
+          element.classList.remove('typing');
+          element.classList.add('finished');
+          setTimeout(() => {
+            element.classList.remove('finished');
+          }, 500);
+          resolve();
+        }
+      }
+      type();
+    });
+  }
+
+  async function startTypewriterEffect() {
+    const paragraph1 = document.getElementById('paragraph1');
+    const paragraph2 = document.getElementById('paragraph2');
+    const paragraph3 = document.getElementById('paragraph3');
+    const signature = document.getElementById('signature');
+
+    const texts = {
+      paragraph1: 'Happy Birthday to the most amazing person I know! Today is your special day, and I want to take a moment to express how much you mean to me. You are not just a friend, but a sister, a confidante, and a source of endless joy and inspiration.',
+      paragraph2: 'I hope your special day is filled with all your favorite things - from morning coffee to evening stars. May this new year of your life bring you adventures, laughter, and dreams come true. You deserve all the happiness in the world, and I\'m grateful to be part of your journey.',
+      paragraph3: 'As you blow out your candles today, know that you are cherished and loved more than words can express. Here\'s to another year of amazing adventures, beautiful moments, and endless possibilities ahead.',
+      signature: 'With all my love,<br />Krissss ♡'
+    };
+
+    // Reset typewriter elements (title is already static)
+    [paragraph1, paragraph2, paragraph3, signature].forEach(el => {
+      el.innerHTML = '';
+      el.style.display = 'none';
+      el.classList.remove('typing', 'finished');
+    });
+
+    // Type each element in sequence with delays (no title animation)
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    await typeWriter(paragraph1, texts.paragraph1, 15);
+    await new Promise(resolve => setTimeout(resolve, 200));
+    
+    await typeWriter(paragraph2, texts.paragraph2, 15);
+    await new Promise(resolve => setTimeout(resolve, 200));
+    
+    await typeWriter(paragraph3, texts.paragraph3, 15);
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
+    await typeWriter(signature, texts.signature, 30);
+  }
+
+  // Play background music on page load and ensure it starts immediately
+  window.addEventListener('load', () => {
+    bgMusic.volume = 0.3;
+    const playPromise = bgMusic.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        bgMusic.muted = false;
+      }).catch(() => {
+        // Autoplay might be blocked, try to play after user interaction
+        document.body.addEventListener('click', () => {
+          bgMusic.play();
+          bgMusic.muted = false;
+        }, { once: true });
+      });
+    }
+  });
+</script>
+</body>
+</html>
